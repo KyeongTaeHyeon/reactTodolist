@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Java / Maven
+target/
+*.class
+*.jar
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot
+spring-sample/target/
+
+# Build dirs
+build/
+
+# OS
+Thumbs.db
