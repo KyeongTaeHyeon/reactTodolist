@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Minimal maven wrapper stub that forwards to mvn if present, otherwise instructs to install maven.
+if command -v mvn >/dev/null 2>&1; then
+  exec mvn "$@"
+else
+  echo "mvn not found. Please install Maven (brew install maven) or run 'sdk install maven' and try again."
+  exit 1
+fi
