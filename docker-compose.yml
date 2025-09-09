@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+    mariadb:
+        image: mariadb:10.11
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: exampleRootPass
+            MYSQL_DATABASE: react_todolist_dev
+            MYSQL_USER: devuser
+            MYSQL_PASSWORD: devpass
+        ports:
+            - '3306:3306'
+        volumes:
+            - mariadb_data:/var/lib/mysql
+volumes:
+    mariadb_data:

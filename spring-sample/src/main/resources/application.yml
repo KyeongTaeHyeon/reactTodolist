@@ -1,0 +1,23 @@
+spring:
+    datasource:
+        # Default datasource URL used for local development inside the JAR.
+        # For your Windows server, override this by creating an external file
+        # at C:\\apps\\spring-sample\\application.yml or by setting
+        # SPRING_DATASOURCE_URL / SPRING_DATASOURCE_USERNAME / SPRING_DATASOURCE_PASSWORD
+        # Example production URL (remote MariaDB):
+        # jdbc:mariadb://proxogus.codns.com:32272/react_todolist_dev?useSSL=false&serverTimezone=UTC
+        url: jdbc:mariadb://proxogus.codns.com:32272/react_todolist_dev?useSSL=false&serverTimezone=UTC
+        username: devuser
+        password: devpass
+        driver-class-name: org.mariadb.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MariaDBDialect
+    flyway:
+        enabled: true
+        locations: classpath:db/migration
+server:
+    port: 8080

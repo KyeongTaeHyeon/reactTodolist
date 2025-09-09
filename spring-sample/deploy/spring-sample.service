@@ -1,0 +1,15 @@
+[Unit]
+Description=spring-sample service
+After=network.target
+
+[Service]
+User=appuser
+WorkingDirectory=/opt/apps/spring-sample
+EnvironmentFile=/opt/apps/spring-sample/.env
+ExecStart=/usr/bin/java -jar /opt/apps/spring-sample/spring-sample-0.0.1-SNAPSHOT.jar --spring.config.additional-location=application.yml
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
