@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import TodoList from './TodoList';
 import './Todo.css';
 
@@ -21,7 +21,7 @@ function TodoApp() {
         let mounted = true;
         const load = async () => {
             try {
-                const res = await axios.get('/api/todos');
+                const res = await api.get('/api/todos');
                 if (mounted) setTodos(res.data || []);
             } catch (e) {
                 // API 실패 시 로컬스토리지에서 로드
@@ -44,7 +44,7 @@ function TodoApp() {
         const t = text.trim();
         if (!t) return;
         try {
-            const res = await axios.post('/api/todos', { text: t });
+            const res = await api.post('/api/todos', { text: t });
             setTodos((prev) => [res.data, ...prev]);
             setText('');
         } catch (e) {
@@ -59,7 +59,7 @@ function TodoApp() {
         if (!target) return;
         const updated = { ...target, completed: !target.completed };
         try {
-            const res = await axios.put(`/api/todos/${id}`, updated);
+            const res = await api.put(`/api/todos/${id}`, updated);
             setTodos((prev) => prev.map((t) => (t.id === id ? res.data : t)));
         } catch (e) {
             setTodos((prev) => prev.map((t) => (t.id === id ? updated : t)));
@@ -68,7 +68,7 @@ function TodoApp() {
 
     const remove = async (id) => {
         try {
-            await axios.delete(`/api/todos/${id}`);
+            await api.delete(`/api/todos/${id}`);
             setTodos((prev) => prev.filter((t) => t.id !== id));
         } catch (e) {
             setTodos((prev) => prev.filter((t) => t.id !== id));

@@ -8,7 +8,7 @@ spring:
         # jdbc:mariadb://proxogus.codns.com:32272/react_todolist_dev?useSSL=false&serverTimezone=UTC
         url: jdbc:mariadb://proxogus.codns.com:32272/react_todolist_dev?useSSL=false&serverTimezone=UTC
         username: devuser
-        password: devpass
+        password: devpasswrod
         driver-class-name: org.mariadb.jdbc.Driver
     jpa:
         hibernate:
@@ -17,7 +17,9 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.MariaDBDialect
     flyway:
-        enabled: true
+        # Flyway migration disabled because Flyway core bundled with this build
+        # may not recognize MariaDB 12.0. Enable after upgrading Flyway.
+        enabled: false
         locations: classpath:db/migration
 server:
     port: 8080
